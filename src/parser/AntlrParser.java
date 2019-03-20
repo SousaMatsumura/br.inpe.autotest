@@ -6,17 +6,22 @@ import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.tree.ParseTree;
 import org.antlr.v4.runtime.tree.TerminalNode;
 import org.apache.commons.lang3.CharUtils;
-import org.apache.commons.lang3.StringUtils;
 
 
 import java.io.IOException;
-import java.lang.reflect.Method;
-import java.util.ArrayList;
 
 import static org.apache.commons.lang3.StringUtils.*;
 
+
+/*
+*Continue with this:
+* http://jakubdziworski.github.io/java/2016/04/01/antlr_visitor_vs_listener.html
+*https://tomassetti.me/antlr-mega-tutorial/
+*/
+
+
 public class AntlrParser {
-   static final char SEMI_COLON = ';', OPEN_BRACE = '{', CLOSE_BRACE = '}', DOTE = '.';
+   static final char SEMI_COLON = ';', OPEN_BRACE = '{', CLOSE_BRACE = '}', DOT = '.';
    static final char SPACE = ' ';
 
    public static void main(String[] args) throws IOException {
@@ -28,12 +33,6 @@ public class AntlrParser {
       ParseTree parseTree = java8Parser.compilationUnit();
 
       printMethods(parseTree);
-
-
-
-
-
-
    }
 
    static void printTree(ParseTree parseTree){
@@ -43,8 +42,8 @@ public class AntlrParser {
                contains(parseTree.getChild(i).getText(), OPEN_BRACE) ||
                contains(parseTree.getChild(i).getText(), CLOSE_BRACE)){
                System.out.print(parseTree.getChild(i).getText()+CharUtils.LF);
-            }else if(contains(parseTree.getChild(i).getText(), DOTE) ||
-                  (i+1<parseTree.getChildCount() && contains(parseTree.getChild(1+i).getText(), DOTE))){
+            }else if(contains(parseTree.getChild(i).getText(), DOT) ||
+                  (i+1<parseTree.getChildCount() && contains(parseTree.getChild(1+i).getText(), DOT))){
                System.out.print(parseTree.getChild(i).getText());
             }else{
                System.out.print(parseTree.getChild(i).getText()+SPACE);
