@@ -1,5 +1,6 @@
 package parser;
 
+import model.Class;
 import model.Method;
 import model.Variable;
 
@@ -28,17 +29,19 @@ public class AntlrParser {
 
       //new ClassSignatureVisitor().visit(tree);
 
+      Set<Class> cls = new ClassSignatureVisitor("C:\\core\\Estudante.java").visit(tree);
+      for(Class c : cls) System.out.println(c.toString());
 
-      Variable var = new Variable.Builder("Object...", "args").build();
-      Variable var1 = new Variable.Builder("boolean", "b").build();
-      //Method met = new Method.Builder("get").parameters(new HashSet<>().addAll(Array.toSet(new Variable[]{var}))).build();
+      /*Variable var = new Variable.InnerBuilder("Object...", "args").build();
+      Variable var1 = new Variable.InnerBuilder("boolean", "b").build();
+      //Method met = new Method.InnerBuilder("get").parameters(new HashSet<>().addAll(Array.toSet(new Variable[]{var}))).build();
       Set<Variable> set = new HashSet<>();
       set.add(var);
       set.add(var1);
-      Method met = new Method.Builder("get").parameters(new HashSet<Variable>(set)).build();
+      Method met = new Method.InnerBuilder("get").parameters(new HashSet<Variable>(set)).build();
 
 
-      System.out.println(met.getMethodSignature());
+      System.out.println(met.getMethodSignature());*/
 
       /*Set<Method> methods = new MethodSignatureVisitor().visit(tree);
 
